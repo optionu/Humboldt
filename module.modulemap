@@ -1,0 +1,6 @@
+module CGDAL [system] {
+    header "/usr/local/include/gdal.h"
+    header "/usr/local/include/ogr_api.h"
+    link "gdal"
+    export *
+}
