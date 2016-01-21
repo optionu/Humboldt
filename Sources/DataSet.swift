@@ -9,26 +9,22 @@
 import Foundation
 import CGDAL
 
-final class GeometryStorage {
-    private let geometry: OGRGeometryH
-    private var name: String {
-        return String.fromCString(OGR_G_GetGeometryName(geometry)) ?? ""
-    }
-    
-    init?(geometry: OGRGeometryH) { // throws?
-        // In Swift <2.2, classes must initialize stored properties before returning nil
-        self.geometry = geometry
+/// GeometryStorage
+// ToDo: Handle OGR_G_IsValid as warning/errors, check wkb type
+// ToDo: Use throws for GeometryStorage instead of init?
+// ToDo: possible to hide geometryStorage property?
 
-        if (geometry == nil) {
-            return nil
-        }
-    }
-    
-    deinit {
-        OGR_G_DestroyGeometry(geometry)
-    }
-    
-}
+// Finish LineString
+// Finish Polygon
+// Finish data set reading
+
+// MapKit functionality + tests
+
+// ToDo: Why does wkbLinearRing need >= 4 points
+// ToDo: wkbLineString ok for Polygon? (avoid duplicate point)
+// ToDo: provide debug description
+
+//////////////////////////////////////
 
 final public class DataSet {
     public var geometriesCollection: String
@@ -64,7 +60,7 @@ final public class DataSet {
         OGRReleaseDataSource(dataSet)
     }
     
-    public func readData() {
+    public func readData() -> [Geometry] {
         // http://www.gdal.org/ogr__api_8h.html
         // http://www.gdal.org/gdal_8h.html
         // http://www.gdal.org/ogr_apitut.html
@@ -82,6 +78,11 @@ final public class DataSet {
         VSIFCloseL(file)
         
         let dataset = GDALOpenEx(fileName, UInt32(GDAL_OF_VECTOR), nil, nil, nil)
+        defer {
+            GDALClose(dataset)
+        }
+        
+        var geometries = [Geometry]()
         for layerIndex in 0..<GDALDatasetGetLayerCount(dataset) {
             let layer = GDALDatasetGetLayer(dataset, layerIndex)
             let layerName = String.fromCString(OGR_L_GetName(layer))
@@ -90,17 +91,34 @@ final public class DataSet {
             OGR_L_ResetReading(layer)
             var feature = OGR_L_GetNextFeature(layer)
             while feature != nil {
-                let geometry = OGR_F_StealGeometry(feature)
-                if let geometryStorage = GeometryStorage(geometry: geometry) {
-                    print("Geometry: \(geometryStorage.name)")
+                defer {
+                    OGR_F_Destroy(feature)
+                    feature = OGR_L_GetNextFeature(layer)
                 }
                 
-                OGR_F_Destroy(feature)
-
-                feature = OGR_L_GetNextFeature(layer)
+                guard let geometryStorage = GeometryStorage(feature: feature) else {
+                    continue
+                }
+                
+                let geometryType = OGR_G_GetGeometryType(geometryStorage.geometry)
+                guard let geometry = geometryForGeometryType(geometryType, geometryStorage: geometryStorage) else {
+                    continue
+                }
+                
+                print("Geometry: \(geometry)")
+                geometries.append(geometry)
             }
         }
+        
+        return geometries
+    }
+}
 
-        GDALClose(dataset)
+func geometryForGeometryType(geometryType: OGRwkbGeometryType, geometryStorage: GeometryStorage) -> Geometry? {
+    switch geometryType {
+    case wkbPoint, wkbPoint25D:
+        return Point(geometryStorage: geometryStorage)
+    default:
+        return nil
     }
 }

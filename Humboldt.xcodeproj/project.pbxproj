@@ -9,8 +9,18 @@
 /* Begin PBXBuildFile section */
 		03A6E3631C3D77370072FD7C /* Humboldt.h in Headers */ = {isa = PBXBuildFile; fileRef = 03A6E3621C3D77370072FD7C /* Humboldt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03A6E36A1C3D77370072FD7C /* Humboldt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A6E35F1C3D77370072FD7C /* Humboldt.framework */; };
-		03A6E36F1C3D77370072FD7C /* HumboldtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6E36E1C3D77370072FD7C /* HumboldtTests.swift */; };
+		03A6E36F1C3D77370072FD7C /* GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6E36E1C3D77370072FD7C /* GeometryTests.swift */; };
 		03C281C11C3D7DE1002E75BE /* DataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C281C01C3D7DE1002E75BE /* DataSet.swift */; };
+		62B2AEDE1C52DDD600D17BAC /* PointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2AEDD1C52DDD600D17BAC /* PointTests.swift */; };
+		62D5FB1B1C53F3FA000A6489 /* GeometryOperationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5FB1A1C53F3FA000A6489 /* GeometryOperationsTests.swift */; };
+		62D5FB1D1C53F7AB000A6489 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5FB1C1C53F7AB000A6489 /* Point.swift */; };
+		62D5FB1F1C53FA6B000A6489 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5FB1E1C53FA6B000A6489 /* Geometry.swift */; };
+		62D5FB211C53FD8E000A6489 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5FB201C53FD8E000A6489 /* Position.swift */; };
+		62D5FB231C53FE71000A6489 /* GeometryOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5FB221C53FE71000A6489 /* GeometryOperations.swift */; };
+		62D5FB251C54134A000A6489 /* PositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5FB241C54134A000A6489 /* PositionTests.swift */; };
+		62D5FB271C54161B000A6489 /* MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5FB261C54161B000A6489 /* MapKit.swift */; };
+		62D5FB291C5418DE000A6489 /* LineString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5FB281C5418DE000A6489 /* LineString.swift */; };
+		62D5FB2B1C5418E9000A6489 /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5FB2A1C5418E9000A6489 /* Polygon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,9 +38,19 @@
 		03A6E3621C3D77370072FD7C /* Humboldt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Humboldt.h; sourceTree = "<group>"; };
 		03A6E3641C3D77370072FD7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03A6E3691C3D77370072FD7C /* HumboldtTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HumboldtTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		03A6E36E1C3D77370072FD7C /* HumboldtTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumboldtTests.swift; sourceTree = "<group>"; };
+		03A6E36E1C3D77370072FD7C /* GeometryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryTests.swift; sourceTree = "<group>"; };
 		03A6E3701C3D77370072FD7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03C281C01C3D7DE1002E75BE /* DataSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSet.swift; sourceTree = "<group>"; };
+		62B2AEDD1C52DDD600D17BAC /* PointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointTests.swift; sourceTree = "<group>"; };
+		62D5FB1A1C53F3FA000A6489 /* GeometryOperationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryOperationsTests.swift; sourceTree = "<group>"; };
+		62D5FB1C1C53F7AB000A6489 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		62D5FB1E1C53FA6B000A6489 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
+		62D5FB201C53FD8E000A6489 /* Position.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		62D5FB221C53FE71000A6489 /* GeometryOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryOperations.swift; sourceTree = "<group>"; };
+		62D5FB241C54134A000A6489 /* PositionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionTests.swift; sourceTree = "<group>"; };
+		62D5FB261C54161B000A6489 /* MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKit.swift; sourceTree = "<group>"; };
+		62D5FB281C5418DE000A6489 /* LineString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineString.swift; sourceTree = "<group>"; };
+		62D5FB2A1C5418E9000A6489 /* Polygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Polygon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,9 +93,16 @@
 		03A6E3611C3D77370072FD7C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				03C281C01C3D7DE1002E75BE /* DataSet.swift */,
+				62D5FB1E1C53FA6B000A6489 /* Geometry.swift */,
+				62D5FB221C53FE71000A6489 /* GeometryOperations.swift */,
+				62D5FB201C53FD8E000A6489 /* Position.swift */,
+				62D5FB1C1C53F7AB000A6489 /* Point.swift */,
+				62D5FB281C5418DE000A6489 /* LineString.swift */,
+				62D5FB2A1C5418E9000A6489 /* Polygon.swift */,
+				62D5FB261C54161B000A6489 /* MapKit.swift */,
 				03A6E3621C3D77370072FD7C /* Humboldt.h */,
 				03A6E3641C3D77370072FD7C /* Info.plist */,
-				03C281C01C3D7DE1002E75BE /* DataSet.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -83,7 +110,10 @@
 		03A6E36D1C3D77370072FD7C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				03A6E36E1C3D77370072FD7C /* HumboldtTests.swift */,
+				62D5FB241C54134A000A6489 /* PositionTests.swift */,
+				62D5FB1A1C53F3FA000A6489 /* GeometryOperationsTests.swift */,
+				03A6E36E1C3D77370072FD7C /* GeometryTests.swift */,
+				62B2AEDD1C52DDD600D17BAC /* PointTests.swift */,
 				03A6E3701C3D77370072FD7C /* Info.plist */,
 			);
 			path = Tests;
@@ -197,7 +227,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62D5FB2B1C5418E9000A6489 /* Polygon.swift in Sources */,
+				62D5FB231C53FE71000A6489 /* GeometryOperations.swift in Sources */,
+				62D5FB291C5418DE000A6489 /* LineString.swift in Sources */,
+				62D5FB1D1C53F7AB000A6489 /* Point.swift in Sources */,
 				03C281C11C3D7DE1002E75BE /* DataSet.swift in Sources */,
+				62D5FB1F1C53FA6B000A6489 /* Geometry.swift in Sources */,
+				62D5FB211C53FD8E000A6489 /* Position.swift in Sources */,
+				62D5FB271C54161B000A6489 /* MapKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +242,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03A6E36F1C3D77370072FD7C /* HumboldtTests.swift in Sources */,
+				03A6E36F1C3D77370072FD7C /* GeometryTests.swift in Sources */,
+				62D5FB1B1C53F3FA000A6489 /* GeometryOperationsTests.swift in Sources */,
+				62B2AEDE1C52DDD600D17BAC /* PointTests.swift in Sources */,
+				62D5FB251C54134A000A6489 /* PositionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
