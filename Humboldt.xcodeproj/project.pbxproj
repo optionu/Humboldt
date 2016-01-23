@@ -21,6 +21,7 @@
 		62D5FB271C54161B000A6489 /* MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5FB261C54161B000A6489 /* MapKit.swift */; };
 		62D5FB291C5418DE000A6489 /* LineString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5FB281C5418DE000A6489 /* LineString.swift */; };
 		62D5FB2B1C5418E9000A6489 /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5FB2A1C5418E9000A6489 /* Polygon.swift */; };
+		62D5FB2D1C543CB8000A6489 /* DataSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5FB2C1C543CB8000A6489 /* DataSetTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		62D5FB261C54161B000A6489 /* MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapKit.swift; sourceTree = "<group>"; };
 		62D5FB281C5418DE000A6489 /* LineString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineString.swift; sourceTree = "<group>"; };
 		62D5FB2A1C5418E9000A6489 /* Polygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Polygon.swift; sourceTree = "<group>"; };
+		62D5FB2C1C543CB8000A6489 /* DataSetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSetTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 		03A6E36D1C3D77370072FD7C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				62D5FB2C1C543CB8000A6489 /* DataSetTests.swift */,
 				62D5FB241C54134A000A6489 /* PositionTests.swift */,
 				62D5FB1A1C53F3FA000A6489 /* GeometryOperationsTests.swift */,
 				03A6E36E1C3D77370072FD7C /* GeometryTests.swift */,
@@ -246,6 +249,7 @@
 				62D5FB1B1C53F3FA000A6489 /* GeometryOperationsTests.swift in Sources */,
 				62B2AEDE1C52DDD600D17BAC /* PointTests.swift in Sources */,
 				62D5FB251C54134A000A6489 /* PositionTests.swift in Sources */,
+				62D5FB2D1C543CB8000A6489 /* DataSetTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

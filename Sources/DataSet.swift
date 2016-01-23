@@ -9,7 +9,7 @@
 import Foundation
 import CGDAL
 
-/// GeometryStorage
+// DataSet reading
 // ToDo: Handle OGR_G_IsValid as warning/errors, check wkb type
 // ToDo: Use throws for GeometryStorage instead of init?
 // ToDo: possible to hide geometryStorage property?
@@ -27,37 +27,38 @@ import CGDAL
 //////////////////////////////////////
 
 final public class DataSet {
-    public var geometriesCollection: String
-
-    convenience public init(fileName: String) {
-        self.init(geometriesCollection: "")
-    }
-
-    convenience public init() {
-        self.init(geometriesCollection: "")
-    }
-
-    public init(geometriesCollection: String) {
-        self.geometriesCollection = ""
+    public init() {
+        if GDALGetDriverCount() == 0 {
+            GDALAllRegister()
+        }
     }
     
-    public func readData1() {
-        // http://gdal.org/1.11/ogr/ogr__api_8h.html
+//    public var driverNames: [String] {
+//        var driverNames = [String]()
+//        for i in 0..<GDALGetDriverCount() {
+//            let driver = GDALGetDriver(i)
+//            if let driverName = String.fromCString(GDALGetDriverShortName(driver)) {
+//                driverNames.append(driverName)
+//            } else {
+//                assert(false)
+//            }
+//        }
+//        
+//        return driverNames
+//    }
+    
+    public var driverNames: [String] {
+        var driverNames = [String]()
+        for i in 0..<OGRGetDriverCount() {
+            let driver = OGRGetDriver(i)
+            if let driverName = String.fromCString(OGR_Dr_GetName(driver)) {
+                driverNames.append(driverName)
+            } else {
+                assert(false)
+            }
+        }
         
-        OGRRegisterAll()
-        
-        let geoJSON = "{\"type\": \"Feature\",\"geometry\": {\"type\": \"Point\", \"coordinates\": [125.6, 10.1]},\"properties\": {\"name\": \"Dinagat Islands\"}}"
-        let geoJSONData = geoJSON.dataUsingEncoding(NSUTF8StringEncoding)!
-
-        let fileName = "/vsimem/\(NSUUID().UUIDString)"
-        let file = VSIFileFromMemBuffer(fileName, UnsafeMutablePointer<UInt8>(geoJSONData.bytes), UInt64(geoJSONData.length), 0)
-        VSIFCloseL(file)
-
-        let dataSet = OGROpen(fileName, 0, nil)
-        let count = OGR_DS_GetLayerCount(dataSet)
-        print(count)
-        
-        OGRReleaseDataSource(dataSet)
+        return driverNames
     }
     
     public func readData() -> [Geometry] {
@@ -67,8 +68,6 @@ final public class DataSet {
         // https://github.com/OSGeo/gdal
         // http://pcjericks.github.io/py-gdalogr-cookbook/#
         // http://ankit.im/swift/2016/01/02/creating-value-type-generic-stack-in-swift-with-pointers-and-copy-on-write/
-        
-        GDALAllRegister();
         
         let geoJSON = "{\"type\": \"Feature\",\"geometry\": {\"type\": \"Point\", \"coordinates\": [125.6, 10.1]},\"properties\": {\"name\": \"Dinagat Islands\"}}"
         let geoJSONData = geoJSON.dataUsingEncoding(NSUTF8StringEncoding)!

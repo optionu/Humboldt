@@ -45,76 +45,46 @@ class GeometryTests: XCTestCase {
     
     
     
-    func testExample() {
-        let dataSet = DataSet()
-        let geometries = dataSet.readData()
-        if let point = geometries.first as? Point {
-            print("\(point.position)")
-        }
-    }
-    
-    func testPoint() {
-        let geometry = OGR_G_CreateGeometry(wkbPoint)
-        OGR_G_AddPoint(geometry, 1, 2, 3)
-        XCTAssertTrue(OGR_G_IsValid(geometry) != 0)
-
-        let geometryStorage = GeometryStorage(geometry: geometry)
-        XCTAssertNotNil(geometryStorage)
-    }
-
-    func testLineString() {
-        let geometry = OGR_G_CreateGeometry(wkbLineString)
-        OGR_G_AddPoint(geometry, 1, 2, 3)
-        OGR_G_AddPoint(geometry, 4, 5, 6)
-        XCTAssertTrue(OGR_G_IsValid(geometry) != 0)
-
-        let geometryStorage = GeometryStorage(geometry: geometry)
-        XCTAssertNotNil(geometryStorage)
-        XCTAssertEqual(geometryStorage?.geometry, geometry)
-    }
-
-    func testPolygon() {
-        let geometry = OGR_G_CreateGeometry(wkbLinearRing)
-        let x = 0.0, y = 0.0, z = 0.0;
-        OGR_G_AddPoint(geometry, x, y, z)
-        OGR_G_AddPoint(geometry, 1, 0, 0)
-        OGR_G_AddPoint(geometry, 1, 1, 0)
-        OGR_G_AddPoint(geometry, x, y, z)
-
-        let geometryPolygon = OGR_G_CreateGeometry(wkbPolygon)
-        OGR_G_AddGeometryDirectly(geometryPolygon, geometry)
-        XCTAssertTrue(OGR_G_IsValid(geometryPolygon) != 0)
-
-        let geometryStorage = GeometryStorage(geometry: geometryPolygon)
-        XCTAssertNotNil(geometryStorage)
-        XCTAssertEqual(geometryStorage?.geometry, geometryPolygon)
-    }
-
-    func testAnnotations() {
-        let geometry = OGR_G_CreateGeometry(wkbPoint)
-        OGR_G_AddPoint(geometry, 1, 2, 3)
-        OGR_G_AddPoint(geometry, 4, 5, 6)
-        XCTAssertTrue(OGR_G_IsValid(geometry) != 0)
-
-        let geometryStorage = GeometryStorage(geometry: geometry)!
-        let point = Point(geometryStorage: geometryStorage)
-        
-        let annotations = point.annotations()
-        XCTAssertEqual(annotations.count, 1)
-        
-        XCTAssertEqual(point.name, "POINT")
-    }
-    
-    func testConvexHull() {
-        let geometry = OGR_G_CreateGeometry(wkbLineString)
-        OGR_G_AddPoint(geometry, 1, 2, 3)
-        OGR_G_AddPoint(geometry, 4, 5, 6)
-        XCTAssertTrue(OGR_G_IsValid(geometry) != 0)
-        
-        let geometryStorage = GeometryStorage(geometry: geometry)!
-        let point = Point(geometryStorage: geometryStorage)
-
-        let buffer = point.buffer(distance: 10)
-        XCTAssertEqual(buffer.name, "POLYGON")
-    }
+//    func testLineString() {
+//        let geometry = OGR_G_CreateGeometry(wkbLineString)
+//        OGR_G_AddPoint(geometry, 1, 2, 3)
+//        OGR_G_AddPoint(geometry, 4, 5, 6)
+//        XCTAssertTrue(OGR_G_IsValid(geometry) != 0)
+//
+//        let geometryStorage = GeometryStorage(geometry: geometry)
+//        XCTAssertNotNil(geometryStorage)
+//        XCTAssertEqual(geometryStorage?.geometry, geometry)
+//    }
+//
+//    func testPolygon() {
+//        let geometry = OGR_G_CreateGeometry(wkbLinearRing)
+//        let x = 0.0, y = 0.0, z = 0.0;
+//        OGR_G_AddPoint(geometry, x, y, z)
+//        OGR_G_AddPoint(geometry, 1, 0, 0)
+//        OGR_G_AddPoint(geometry, 1, 1, 0)
+//        OGR_G_AddPoint(geometry, x, y, z)
+//
+//        let geometryPolygon = OGR_G_CreateGeometry(wkbPolygon)
+//        OGR_G_AddGeometryDirectly(geometryPolygon, geometry)
+//        XCTAssertTrue(OGR_G_IsValid(geometryPolygon) != 0)
+//
+//        let geometryStorage = GeometryStorage(geometry: geometryPolygon)
+//        XCTAssertNotNil(geometryStorage)
+//        XCTAssertEqual(geometryStorage?.geometry, geometryPolygon)
+//    }
+//
+//    func testAnnotations() {
+//        let geometry = OGR_G_CreateGeometry(wkbPoint)
+//        OGR_G_AddPoint(geometry, 1, 2, 3)
+//        OGR_G_AddPoint(geometry, 4, 5, 6)
+//        XCTAssertTrue(OGR_G_IsValid(geometry) != 0)
+//
+//        let geometryStorage = GeometryStorage(geometry: geometry)!
+//        let point = Point(geometryStorage: geometryStorage)
+//        
+//        let annotations = point.annotations()
+//        XCTAssertEqual(annotations.count, 1)
+//        
+//        XCTAssertEqual(point.name, "POINT")
+//    }
 }
