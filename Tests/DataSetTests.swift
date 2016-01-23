@@ -16,6 +16,8 @@ class DataSetTests: XCTestCase {
         if let point = geometries.first as? Point {
             print("\(point.position)")
         }
+        
+        XCTAssertEqual(geometries.count, 1)
     }
     
     func testDriverNames() {

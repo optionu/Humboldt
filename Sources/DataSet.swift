@@ -10,6 +10,7 @@ import Foundation
 import CGDAL
 
 // DataSet reading
+
 // ToDo: Handle OGR_G_IsValid as warning/errors, check wkb type
 // ToDo: Use throws for GeometryStorage instead of init?
 // ToDo: possible to hide geometryStorage property?
@@ -70,10 +71,10 @@ final public class DataSet {
         // http://ankit.im/swift/2016/01/02/creating-value-type-generic-stack-in-swift-with-pointers-and-copy-on-write/
         
         let geoJSON = "{\"type\": \"Feature\",\"geometry\": {\"type\": \"Point\", \"coordinates\": [125.6, 10.1]},\"properties\": {\"name\": \"Dinagat Islands\"}}"
-        let geoJSONData = geoJSON.dataUsingEncoding(NSUTF8StringEncoding)!
+        let data = geoJSON.dataUsingEncoding(NSUTF8StringEncoding)!
         
         let fileName = "/vsimem/\(NSUUID().UUIDString)"
-        let file = VSIFileFromMemBuffer(fileName, UnsafeMutablePointer<UInt8>(geoJSONData.bytes), UInt64(geoJSONData.length), 0)
+        let file = VSIFileFromMemBuffer(fileName, UnsafeMutablePointer<UInt8>(data.bytes), UInt64(data.length), 0)
         VSIFCloseL(file)
         
         let dataset = GDALOpenEx(fileName, UInt32(GDAL_OF_VECTOR), nil, nil, nil)
