@@ -11,7 +11,7 @@ import CGDAL
 
 /// Data structure representing a single position.
 public struct Point : Geometry {
-    public internal(set) var geometryStorage: GeometryStorage
+    public private(set) var geometryStorage: GeometryStorage
     
     public init(position: Position? = nil) {
         let geometry = OGR_G_CreateGeometry(wkbPoint)

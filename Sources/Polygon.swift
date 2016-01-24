@@ -9,5 +9,5 @@
 import Foundation
 
 public struct Polygon : Geometry {
-    public let geometryStorage: GeometryStorage
+    public private(set) var geometryStorage: GeometryStorage
 }

@@ -7,18 +7,17 @@
 //
 
 import Foundation
-import CGDAL
 
 public struct Position {
-    public let x, y: Double
-    public let altitude: Double?
+    public var x, y: Double
+    public var altitude: Double?
     
     public var longitude: Double { return x }
     public var latitude: Double { return y }
     public var easting: Double { return x }
     public var northing: Double { return y }
     
-    public init(x: Double, y: Double, altitude: Double? = nil) {
+    public init(x: Double = 0, y: Double = 0, altitude: Double? = nil) {
         self.x = x
         self.y = y
         self.altitude = altitude

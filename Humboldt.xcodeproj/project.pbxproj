@@ -22,6 +22,9 @@
 		62D5FB291C5418DE000A6489 /* LineString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5FB281C5418DE000A6489 /* LineString.swift */; };
 		62D5FB2B1C5418E9000A6489 /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5FB2A1C5418E9000A6489 /* Polygon.swift */; };
 		62D5FB2D1C543CB8000A6489 /* DataSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5FB2C1C543CB8000A6489 /* DataSetTests.swift */; };
+		62E473D51C5556DE0004EF6F /* LineStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E473D41C5556DE0004EF6F /* LineStringTests.swift */; };
+		62E473D71C55600B0004EF6F /* PositionCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E473D61C55600B0004EF6F /* PositionCollection.swift */; };
+		62E473D91C5560360004EF6F /* PositionCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E473D81C5560360004EF6F /* PositionCollectionTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		62D5FB281C5418DE000A6489 /* LineString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineString.swift; sourceTree = "<group>"; };
 		62D5FB2A1C5418E9000A6489 /* Polygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Polygon.swift; sourceTree = "<group>"; };
 		62D5FB2C1C543CB8000A6489 /* DataSetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSetTests.swift; sourceTree = "<group>"; };
+		62E473D41C5556DE0004EF6F /* LineStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineStringTests.swift; sourceTree = "<group>"; };
+		62E473D61C55600B0004EF6F /* PositionCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionCollection.swift; sourceTree = "<group>"; };
+		62E473D81C5560360004EF6F /* PositionCollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionCollectionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,7 @@
 				62D5FB1E1C53FA6B000A6489 /* Geometry.swift */,
 				62D5FB221C53FE71000A6489 /* GeometryOperations.swift */,
 				62D5FB201C53FD8E000A6489 /* Position.swift */,
+				62E473D61C55600B0004EF6F /* PositionCollection.swift */,
 				62D5FB1C1C53F7AB000A6489 /* Point.swift */,
 				62D5FB281C5418DE000A6489 /* LineString.swift */,
 				62D5FB2A1C5418E9000A6489 /* Polygon.swift */,
@@ -114,9 +121,11 @@
 			children = (
 				62D5FB2C1C543CB8000A6489 /* DataSetTests.swift */,
 				62D5FB241C54134A000A6489 /* PositionTests.swift */,
+				62E473D81C5560360004EF6F /* PositionCollectionTests.swift */,
 				62D5FB1A1C53F3FA000A6489 /* GeometryOperationsTests.swift */,
 				03A6E36E1C3D77370072FD7C /* GeometryTests.swift */,
 				62B2AEDD1C52DDD600D17BAC /* PointTests.swift */,
+				62E473D41C5556DE0004EF6F /* LineStringTests.swift */,
 				03A6E3701C3D77370072FD7C /* Info.plist */,
 			);
 			path = Tests;
@@ -234,6 +243,7 @@
 				62D5FB231C53FE71000A6489 /* GeometryOperations.swift in Sources */,
 				62D5FB291C5418DE000A6489 /* LineString.swift in Sources */,
 				62D5FB1D1C53F7AB000A6489 /* Point.swift in Sources */,
+				62E473D71C55600B0004EF6F /* PositionCollection.swift in Sources */,
 				03C281C11C3D7DE1002E75BE /* DataSet.swift in Sources */,
 				62D5FB1F1C53FA6B000A6489 /* Geometry.swift in Sources */,
 				62D5FB211C53FD8E000A6489 /* Position.swift in Sources */,
@@ -245,11 +255,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62E473D51C5556DE0004EF6F /* LineStringTests.swift in Sources */,
 				03A6E36F1C3D77370072FD7C /* GeometryTests.swift in Sources */,
 				62D5FB1B1C53F3FA000A6489 /* GeometryOperationsTests.swift in Sources */,
 				62B2AEDE1C52DDD600D17BAC /* PointTests.swift in Sources */,
 				62D5FB251C54134A000A6489 /* PositionTests.swift in Sources */,
 				62D5FB2D1C543CB8000A6489 /* DataSetTests.swift in Sources */,
+				62E473D91C5560360004EF6F /* PositionCollectionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

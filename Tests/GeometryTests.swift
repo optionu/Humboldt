@@ -45,17 +45,6 @@ class GeometryTests: XCTestCase {
     
     
     
-//    func testLineString() {
-//        let geometry = OGR_G_CreateGeometry(wkbLineString)
-//        OGR_G_AddPoint(geometry, 1, 2, 3)
-//        OGR_G_AddPoint(geometry, 4, 5, 6)
-//        XCTAssertTrue(OGR_G_IsValid(geometry) != 0)
-//
-//        let geometryStorage = GeometryStorage(geometry: geometry)
-//        XCTAssertNotNil(geometryStorage)
-//        XCTAssertEqual(geometryStorage?.geometry, geometry)
-//    }
-//
 //    func testPolygon() {
 //        let geometry = OGR_G_CreateGeometry(wkbLinearRing)
 //        let x = 0.0, y = 0.0, z = 0.0;

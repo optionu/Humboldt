@@ -10,14 +10,6 @@ import XCTest
 @testable import Humboldt
 
 class PointTests: XCTestCase {
-    override func setUp() {
-        super.setUp()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-    
     func testInit() {
         let point = Point()
         XCTAssertEqual(point.position.x, 0)
