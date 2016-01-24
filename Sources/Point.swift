@@ -34,7 +34,7 @@ public struct Point : Geometry {
             let altitude: Double? = is3D ? OGR_G_GetZ(geometryStorage.geometry, 0) : nil
             return Position(x: x, y: y, altitude: altitude)
         }
-        set(position) {
+        mutating set(position) {
             ensureUnique(geometryStorage: &geometryStorage)
             if let altitude = position.altitude {
                 OGR_G_SetPoint(geometryStorage.geometry, 0, position.x, position.y, altitude)

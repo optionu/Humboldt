@@ -9,15 +9,20 @@
 import Foundation
 import CGDAL
 
-// DataSet reading
-
+/// Finish data set reading
 // ToDo: Handle OGR_G_IsValid as warning/errors, check wkb type
 // ToDo: Use throws for GeometryStorage instead of init?
 // ToDo: possible to hide geometryStorage property?
 
-// Finish LineString
+// Fix 3D when creating geometries?
+
+/// Finish LineString
+// mutating -> unique
+// Unduplicate setting/getting positions
+// ArrayLiteralConvertible
+// append, insert
+
 // Finish Polygon
-// Finish data set reading
 
 // MapKit functionality + tests
 
