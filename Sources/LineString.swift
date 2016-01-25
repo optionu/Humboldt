@@ -10,7 +10,10 @@ import Foundation
 import CGDAL
 
 public struct LineString : Geometry {
-    public private(set) var geometryStorage: GeometryStorage
+    public var geometryStorage: GeometryStorage {
+        return positions.geometryStorage
+    }
+    public internal(set) var positions: PositionCollection
     
     public init(position: Position? = nil) {
         let geometry = OGR_G_CreateGeometry(wkbLineString)
@@ -18,11 +21,12 @@ public struct LineString : Geometry {
         self.init(geometryStorage: geometryStorage)
         
 //        if let position = position {
-//            self.position = position
+//            OGR_G_SetPointCount(geometry, 1)
+//            self.positions[0] = position
 //        }
     }
     
     init(geometryStorage: GeometryStorage) {
-        self.geometryStorage = geometryStorage
+        self.positions = PositionCollection(geometryStorage: geometryStorage)
     }
 }

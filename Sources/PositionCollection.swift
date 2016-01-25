@@ -10,7 +10,7 @@ import Foundation
 import CGDAL
 
 public struct PositionCollection {
-    private let geometryStorage: GeometryStorage
+    var geometryStorage: GeometryStorage
     
     public init(geometryStorage: GeometryStorage) {
         self.geometryStorage = geometryStorage
@@ -62,6 +62,8 @@ extension PositionCollection : MutableCollectionType {
             // Don't allow geometry to grow automatically to be similar to Array (even though GDAL supports this)
             precondition(index >= 0)
             precondition(index < Int(OGR_G_GetPointCount(self.geometryStorage.geometry)))
+            
+            ensureUnique(geometryStorage: &geometryStorage)
             
             if let altitude = position.altitude {
                 OGR_G_SetPoint(geometryStorage.geometry, Int32(index), position.x, position.y, altitude)

@@ -18,9 +18,9 @@ import CGDAL
 
 /// Finish LineString
 // mutating -> unique
-// Unduplicate setting/getting positions
+// Unduplicate setting/getting positions code
 // ArrayLiteralConvertible
-// append, insert
+// append, insert -> ExtensibleCollectionType (http://nshipster.com/swift-collection-protocols/)
 
 // Finish Polygon
 
