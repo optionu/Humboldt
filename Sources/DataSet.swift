@@ -15,6 +15,7 @@ import CGDAL
 // ToDo: possible to hide geometryStorage property?
 
 // Fix 3D when creating geometries?
+// Make geometries immutable?
 
 /// Finish LineString
 // mutating -> unique

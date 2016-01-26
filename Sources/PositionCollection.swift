@@ -59,7 +59,8 @@ extension PositionCollection : MutableCollectionType {
             return Position(x: x, y: y, altitude: altitude)
         }
         mutating set(position) {
-            // Don't allow geometry to grow automatically to be similar to Array (even though GDAL supports this)
+            // Don't allow geometry to grow automatically (even though GDAL supports this)
+            // so that the behavior is similar to Array
             precondition(index >= 0)
             precondition(index < Int(OGR_G_GetPointCount(self.geometryStorage.geometry)))
             
