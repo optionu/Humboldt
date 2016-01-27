@@ -17,13 +17,18 @@ import CGDAL
 // Fix 3D when creating geometries?
 // Make geometries immutable?
 
-/// Finish LineString
-// mutating -> unique
+/// LineString
+// Add tests
 // Unduplicate setting/getting positions code
+
+/// Polygon
+// ensure uniqueness (polygon instead of point collection)
+// init and test interiorRings
+
+/// PositionCollection
 // ArrayLiteralConvertible
 // append, insert -> ExtensibleCollectionType (http://nshipster.com/swift-collection-protocols/)
-
-// Finish Polygon
+// use append in tests
 
 // MapKit functionality + tests
 

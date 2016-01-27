@@ -16,12 +16,14 @@ public protocol Geometry {
 
 public final class GeometryStorage {
     let geometry: OGRGeometryH
+    let ownsGeometry: Bool
     
-    /// Take ownership of the given geometry
-    init?(geometry: OGRGeometryH) {
+    /// Handle the given geometry and optionally take ownership
+    init?(geometry: OGRGeometryH, ownsGeometry: Bool = true) {
         // Can't use guard in Swift <2.2 because classes must initialize stored
         // properties before returning nil
         self.geometry = geometry
+        self.ownsGeometry = ownsGeometry
         
         if (geometry == nil) {
             return nil
@@ -45,7 +47,9 @@ public final class GeometryStorage {
     }
     
     deinit {
-        OGR_G_DestroyGeometry(geometry)
+        if ownsGeometry {
+            OGR_G_DestroyGeometry(geometry)
+        }
     }
 }
 

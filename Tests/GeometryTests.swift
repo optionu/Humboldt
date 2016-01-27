@@ -34,6 +34,13 @@ class GeometryTests: XCTestCase {
         XCTAssertNil(geometryStorage)
     }
     
+    func testDoesNotOwnGeoemtry() {
+        let geometry = OGR_G_CreateGeometry(wkbPoint)
+        let geometryStorage = GeometryStorage(geometry: geometry, ownsGeometry: false)
+        XCTAssertNotNil(geometryStorage)
+        OGR_G_DestroyGeometry(geometry)
+    }
+    
     //    func testFeature() {
     //        let featureDefinition = OGR_FD_Crea
     //        let geometryStorage = GeometryStorage(feature: nil)

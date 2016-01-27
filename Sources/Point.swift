@@ -41,6 +41,8 @@ public struct Point : Geometry {
     }
     
     init(geometryStorage: GeometryStorage) {
+        precondition(OGR_G_GetGeometryType(geometryStorage.geometry) == wkbPoint)
+
         self.geometryStorage = geometryStorage
     }
 }

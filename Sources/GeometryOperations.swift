@@ -18,9 +18,9 @@ public extension Geometry {
         return String.fromCString(OGR_G_GetGeometryName(geometryStorage.geometry)) ?? ""
     }
     
-    public func buffer(distance distance: Double) -> Polygon {
-        let geometry = OGR_G_Buffer(self.geometryStorage.geometry, distance, 0)
-        let geometryStorage = GeometryStorage(geometry: geometry)! // ToDo: change to ?? Polygon()
-        return Polygon(geometryStorage: geometryStorage)
-    }
+//    public func buffer(distance distance: Double) -> Polygon {
+//        let geometry = OGR_G_Buffer(self.geometryStorage.geometry, distance, 0)
+//        let geometryStorage = GeometryStorage(geometry: geometry)! // ToDo: change to ?? Polygon()
+//        return Polygon(geometryStorage: geometryStorage)
+//    }
 }

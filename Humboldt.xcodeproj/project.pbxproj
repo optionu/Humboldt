@@ -11,6 +11,7 @@
 		03A6E36A1C3D77370072FD7C /* Humboldt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A6E35F1C3D77370072FD7C /* Humboldt.framework */; };
 		03A6E36F1C3D77370072FD7C /* GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6E36E1C3D77370072FD7C /* GeometryTests.swift */; };
 		03C281C11C3D7DE1002E75BE /* DataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C281C01C3D7DE1002E75BE /* DataSet.swift */; };
+		62387BE81C58244B0052E9BF /* PolygonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62387BE71C58244B0052E9BF /* PolygonTests.swift */; };
 		62B2AEDE1C52DDD600D17BAC /* PointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2AEDD1C52DDD600D17BAC /* PointTests.swift */; };
 		62D5FB1B1C53F3FA000A6489 /* GeometryOperationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5FB1A1C53F3FA000A6489 /* GeometryOperationsTests.swift */; };
 		62D5FB1D1C53F7AB000A6489 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D5FB1C1C53F7AB000A6489 /* Point.swift */; };
@@ -45,6 +46,7 @@
 		03A6E36E1C3D77370072FD7C /* GeometryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryTests.swift; sourceTree = "<group>"; };
 		03A6E3701C3D77370072FD7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03C281C01C3D7DE1002E75BE /* DataSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSet.swift; sourceTree = "<group>"; };
+		62387BE71C58244B0052E9BF /* PolygonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PolygonTests.swift; sourceTree = "<group>"; };
 		62B2AEDD1C52DDD600D17BAC /* PointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointTests.swift; sourceTree = "<group>"; };
 		62D5FB1A1C53F3FA000A6489 /* GeometryOperationsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryOperationsTests.swift; sourceTree = "<group>"; };
 		62D5FB1C1C53F7AB000A6489 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				03A6E36E1C3D77370072FD7C /* GeometryTests.swift */,
 				62B2AEDD1C52DDD600D17BAC /* PointTests.swift */,
 				62E473D41C5556DE0004EF6F /* LineStringTests.swift */,
+				62387BE71C58244B0052E9BF /* PolygonTests.swift */,
 				03A6E3701C3D77370072FD7C /* Info.plist */,
 			);
 			path = Tests;
@@ -255,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62387BE81C58244B0052E9BF /* PolygonTests.swift in Sources */,
 				62E473D51C5556DE0004EF6F /* LineStringTests.swift in Sources */,
 				03A6E36F1C3D77370072FD7C /* GeometryTests.swift in Sources */,
 				62D5FB1B1C53F3FA000A6489 /* GeometryOperationsTests.swift in Sources */,

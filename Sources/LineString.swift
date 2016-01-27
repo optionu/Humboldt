@@ -15,18 +15,15 @@ public struct LineString : Geometry {
     }
     public internal(set) var positions: PositionCollection
     
-    public init(position: Position? = nil) {
+    public init() {
         let geometry = OGR_G_CreateGeometry(wkbLineString)
         let geometryStorage = GeometryStorage(geometry: geometry)!
         self.init(geometryStorage: geometryStorage)
-        
-//        if let position = position {
-//            OGR_G_SetPointCount(geometry, 1)
-//            self.positions[0] = position
-//        }
     }
     
     init(geometryStorage: GeometryStorage) {
+        precondition(OGR_G_GetGeometryType(geometryStorage.geometry) == wkbLineString)
+        
         self.positions = PositionCollection(geometryStorage: geometryStorage)
     }
 }
