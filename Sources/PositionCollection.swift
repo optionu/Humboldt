@@ -54,7 +54,7 @@ extension PositionCollection : MutableCollectionType {
             // Don't allow access outside bounds (even though GDAL supports this)
             // so that the behavior is similar to Array
             precondition(index >= 0)
-            precondition(index < Int(OGR_G_GetPointCount(self.geometryStorage.geometry)))
+            precondition(index < endIndex)
 
             let is3D = OGR_G_GetCoordinateDimension(self.geometryStorage.geometry) > 2
             let x = OGR_G_GetX(self.geometryStorage.geometry, Int32(index))
@@ -67,7 +67,7 @@ extension PositionCollection : MutableCollectionType {
             // Don't allow geometry to grow automatically (even though GDAL supports this)
             // so that the behavior is similar to Array
             precondition(index >= 0)
-            precondition(index < Int(OGR_G_GetPointCount(self.geometryStorage.geometry)))
+            precondition(index < endIndex)
             
             ensureUnique(geometryStorage: &geometryStorage)
             
