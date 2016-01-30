@@ -35,19 +35,16 @@ public struct Position {
 extension Position : Equatable {}
 
 public func ==(lhs: Position, rhs: Position) -> Bool {
-    func dequal(a: Double, _ b: Double) -> Bool {
-        return abs(a - b) < 1.0e-5
-    }
-    func oequal(a: Double?, _ b: Double?) -> Bool {
+    func equal(a: Double?, _ b: Double?) -> Bool {
         switch (a, b) {
         case (.None, .None):
             return true
         case let (a?, b?):
-            return dequal(a, b)
+            return abs(a - b) < 1.0e-5
         default:
             return false
         }
     }
     
-    return dequal(lhs.x, rhs.x) && dequal(lhs.y, rhs.y) && oequal(lhs.altitude, rhs.altitude)
+    return equal(lhs.x, rhs.x) && equal(lhs.y, rhs.y) && equal(lhs.altitude, rhs.altitude)
 }
