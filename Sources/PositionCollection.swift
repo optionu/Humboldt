@@ -51,6 +51,11 @@ extension PositionCollection : MutableCollectionType {
     
     public subscript(index: Int) -> Position {
         get {
+            // Don't allow access outside bounds (even though GDAL supports this)
+            // so that the behavior is similar to Array
+            precondition(index >= 0)
+            precondition(index < Int(OGR_G_GetPointCount(self.geometryStorage.geometry)))
+
             let is3D = OGR_G_GetCoordinateDimension(self.geometryStorage.geometry) > 2
             let x = OGR_G_GetX(self.geometryStorage.geometry, Int32(index))
             let y = OGR_G_GetY(self.geometryStorage.geometry, Int32(index))
@@ -71,6 +76,35 @@ extension PositionCollection : MutableCollectionType {
             } else {
                 OGR_G_SetPoint_2D(geometryStorage.geometry, Int32(index), position.x, position.y)
             }
+        }
+    }
+}
+
+extension PositionCollection : RangeReplaceableCollectionType {
+    public init() {
+        let geometry = OGR_G_CreateGeometry(wkbLineString)
+        self.geometryStorage = GeometryStorage(geometry: geometry)!
+    }
+    
+    public mutating func replaceRange<C : CollectionType where C.Generator.Element == Generator.Element>(subRange: Range<PositionCollection.Index>, with newElements: C) {
+        precondition(subRange.startIndex >= 0)
+        precondition(subRange.endIndex <= endIndex)
+        
+        // Move elements down to keep existing elements
+        
+        // Adjust space to required elements
+        let numberOfPoints = count + numericCast(newElements.count) - (subRange.endIndex - subRange.startIndex)
+        OGR_G_SetPointCount(geometryStorage.geometry, Int32(numberOfPoints))
+        
+        // Move elements up to make space for inserted elements
+        let startIndex = subRange.count > 0 ? subRange.startIndex : subRange.startIndex + 1
+        for index in (startIndex..<numberOfPoints).reverse() {
+            self[index] = self[index - 1]
+        }
+        
+        // Insert new elements
+        for (index, newElement) in newElements.enumerate() {
+            self[index + subRange.startIndex] = newElement
         }
     }
 }
