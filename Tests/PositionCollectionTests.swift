@@ -24,8 +24,7 @@ class PositionCollectionTests: XCTestCase {
         
         var numPositions = 0
         for position in positionCollection {
-            XCTAssertEqual(position.x, positions[numPositions].x)
-            XCTAssertEqual(position.y, positions[numPositions].y)
+            XCTAssertEqual(position, positions[numPositions])
 
             numPositions += 1
         }
@@ -48,8 +47,7 @@ class PositionCollectionTests: XCTestCase {
         XCTAssertEqual(positionCollection.endIndex, positions.count)
         
         for index in 0..<positionCollection.count {
-            XCTAssertEqual(positionCollection[index].x, positions[index].x)
-            XCTAssertEqual(positionCollection[index].y, positions[index].y)
+            XCTAssertEqual(positionCollection[index], positions[index])
         }
     }
 
@@ -67,8 +65,7 @@ class PositionCollectionTests: XCTestCase {
         
         XCTAssertEqual(positionCollection.count, positions.count)
         for index in 0..<positionCollection.count {
-            XCTAssertEqual(positionCollection[index].x, positions[index].x)
-            XCTAssertEqual(positionCollection[index].y, positions[index].y)
+            XCTAssertEqual(positionCollection[index], positions[index])
         }
     }
 
@@ -77,26 +74,19 @@ class PositionCollectionTests: XCTestCase {
         var positionCollection = PositionCollection()
         
         positionCollection.append(positions[0])
-        XCTAssertEqual(positionCollection[0].x, positions[0].x)
-        XCTAssertEqual(positionCollection[0].y, positions[0].y)
+        XCTAssertEqual(positionCollection[0], positions[0])
         XCTAssertEqual(positionCollection.count, 1)
 
         positionCollection.append(positions[1])
-        XCTAssertEqual(positionCollection[0].x, positions[0].x)
-        XCTAssertEqual(positionCollection[0].y, positions[0].y)
-        XCTAssertEqual(positionCollection[1].x, positions[1].x)
-        XCTAssertEqual(positionCollection[1].y, positions[1].y)
+        XCTAssertEqual(positionCollection[0], positions[0])
+        XCTAssertEqual(positionCollection[1], positions[1])
         XCTAssertEqual(positionCollection.count, 2)
         
         positionCollection.appendContentsOf(positions)
-        XCTAssertEqual(positionCollection[0].x, positions[0].x)
-        XCTAssertEqual(positionCollection[0].y, positions[0].y)
-        XCTAssertEqual(positionCollection[1].x, positions[1].x)
-        XCTAssertEqual(positionCollection[1].y, positions[1].y)
-        XCTAssertEqual(positionCollection[2].x, positions[0].x)
-        XCTAssertEqual(positionCollection[2].y, positions[0].y)
-        XCTAssertEqual(positionCollection[3].x, positions[1].x)
-        XCTAssertEqual(positionCollection[3].y, positions[1].y)
+        XCTAssertEqual(positionCollection[0], positions[0])
+        XCTAssertEqual(positionCollection[1], positions[1])
+        XCTAssertEqual(positionCollection[2], positions[0])
+        XCTAssertEqual(positionCollection[3], positions[1])
         XCTAssertEqual(positionCollection.count, 4)
     }
 

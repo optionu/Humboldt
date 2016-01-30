@@ -12,25 +12,21 @@ import XCTest
 class PointTests: XCTestCase {
     func testInit() {
         let point = Point()
-        XCTAssertEqual(point.position.x, 0)
-        XCTAssertEqual(point.position.y, 0)
-        XCTAssertEqual(point.position.altitude, nil)
+        XCTAssertEqual(point.position, Position())
         XCTAssertFalse(point.is3D)
     }
     
     func testInitWithCoordinate2D() {
-        let point = Point(position: Position(x: 1, y: 2))
-        XCTAssertEqual(point.position.x, 1)
-        XCTAssertEqual(point.position.y, 2)
-        XCTAssertEqual(point.position.altitude, nil)
+        let position = Position(x: 1, y: 2)
+        let point = Point(position: position)
+        XCTAssertEqual(point.position, position)
         XCTAssertFalse(point.is3D)
     }
 
     func testInitWithCoordinate3D() {
-        let point = Point(position: Position(x: 1, y: 2, altitude: 3))
-        XCTAssertEqual(point.position.x, 1)
-        XCTAssertEqual(point.position.y, 2)
-        XCTAssertEqual(point.position.altitude, 3)
+        let position = Position(x: 1, y: 2, altitude: 3)
+        let point = Point(position: position)
+        XCTAssertEqual(point.position, position)
         XCTAssertTrue(point.is3D)
     }
     
@@ -42,21 +38,20 @@ class PointTests: XCTestCase {
     }
     
     func testSetCoordinate() {
+        let position = Position(x: 1, y: 2)
         var point = Point()
-        point.position = Position(x: 1, y: 2)
-        XCTAssertEqual(point.position.x, 1)
-        XCTAssertEqual(point.position.y, 2)
-        XCTAssertEqual(point.position.altitude, nil)
+        point.position = position
+        XCTAssertEqual(point.position, position)
     }
     
     func testCopyOnWrite() {
         let point0 = Point()
         var point1 = point0
         XCTAssertTrue(point0.geometryStorage === point1.geometryStorage)
-        XCTAssertEqual(point0.position.x, point1.position.x)
+        XCTAssertEqual(point0.position, point1.position)
         
         point1.position = Position(x: 3, y: 4)
         XCTAssertTrue(point0.geometryStorage !== point1.geometryStorage)
-        XCTAssertNotEqual(point0.position.x, point1.position.x)
+        XCTAssertNotEqual(point0.position, point1.position)
     }
 }

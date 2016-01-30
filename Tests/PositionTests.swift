@@ -62,4 +62,15 @@ class PositionTests: XCTestCase {
         XCTAssertEqual(position.easting, x)
         XCTAssertEqual(position.northing, y)
     }
+    
+    func testEqual() {
+        XCTAssertEqual(Position(), Position())
+        XCTAssertEqual(Position(x: 1.0, y: -3.0), Position(x: 1.0, y: -3.0))
+        XCTAssertNotEqual(Position(x: 1.0, y: -3.0), Position(x: 1.0, y: -3.1))
+        XCTAssertNotEqual(Position(x: 1.0, y: -3.0), Position(x: 0.9, y: -3.0))
+
+        XCTAssertEqual(Position(x: -1.5, y: 2.7, altitude: 13.14), Position(x: -1.5, y: 2.7, altitude: 13.14))
+        XCTAssertNotEqual(Position(x: -1.5, y: 2.7, altitude: 13.14), Position(x: -1.5, y: 2.7, altitude: nil))
+        XCTAssertNotEqual(Position(x: -1.5, y: 2.7, altitude: nil), Position(x: -1.5, y: 2.7, altitude: 13-14))
+    }
 }

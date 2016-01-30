@@ -31,3 +31,23 @@ public struct Position {
         self.init(x: easting, y: northing, altitude: altitude)
     }
 }
+
+extension Position : Equatable {}
+
+public func ==(lhs: Position, rhs: Position) -> Bool {
+    func dequal(a: Double, _ b: Double) -> Bool {
+        return abs(a - b) < 1.0e-5
+    }
+    func oequal(a: Double?, _ b: Double?) -> Bool {
+        switch (a, b) {
+        case (.None, .None):
+            return true
+        case let (a?, b?):
+            return dequal(a, b)
+        default:
+            return false
+        }
+    }
+    
+    return dequal(lhs.x, rhs.x) && dequal(lhs.y, rhs.y) && oequal(lhs.altitude, rhs.altitude)
+}
