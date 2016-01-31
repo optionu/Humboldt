@@ -97,9 +97,9 @@ extension PositionCollection : RangeReplaceableCollectionType {
         OGR_G_SetPointCount(geometryStorage.geometry, Int32(numberOfPoints))
         
         // Move elements up to make space for inserted elements
-        let startIndex = subRange.count > 0 ? subRange.startIndex : subRange.startIndex + 1
+        let startIndex = subRange.startIndex + numericCast(newElements.count)
         for index in (startIndex..<numberOfPoints).reverse() {
-            self[index] = self[index - 1]
+            self[index] = self[index - numericCast(newElements.count)]
         }
         
         // Insert new elements

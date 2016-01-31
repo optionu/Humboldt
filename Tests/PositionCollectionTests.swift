@@ -90,34 +90,27 @@ class PositionCollectionTests: XCTestCase {
         XCTAssertEqual(positionCollection.count, 4)
     }
 
-//    func testRangeReplaceableCollectionTypeInsert() {
-//        let positions = [Position(x: -1, y: -2), Position(x: 1, y: 2)]
-//        var positionCollection = PositionCollection()
-//
-//        positionCollection.insert(positions[1], atIndex: 0)
-//        XCTAssertEqual(positionCollection[0].x, positions[1].x)
-//        XCTAssertEqual(positionCollection[0].y, positions[1].y)
-//        XCTAssertEqual(positionCollection.count, 1)
-//
-//        positionCollection.insert(positions[0], atIndex: 0)
-//        XCTAssertEqual(positionCollection[0].x, positions[0].x)
-//        XCTAssertEqual(positionCollection[0].y, positions[0].y)
-//        XCTAssertEqual(positionCollection[1].x, positions[1].x)
-//        XCTAssertEqual(positionCollection[1].y, positions[1].y)
-//        XCTAssertEqual(positionCollection.count, 2)
-//
-//        positionCollection.insertContentsOf(positions, at: 1)
-//        XCTAssertEqual(positionCollection[0].x, positions[0].x)
-//        XCTAssertEqual(positionCollection[0].y, positions[0].y)
-//        XCTAssertEqual(positionCollection[1].x, positions[0].x)
-//        XCTAssertEqual(positionCollection[1].y, positions[0].y)
-//        XCTAssertEqual(positionCollection[2].x, positions[1].x)
-//        XCTAssertEqual(positionCollection[2].y, positions[1].y)
-//        XCTAssertEqual(positionCollection[3].x, positions[1].x)
-//        XCTAssertEqual(positionCollection[3].y, positions[1].y)
-//        XCTAssertEqual(positionCollection.count, 4)
-//    }
-    
+    func testRangeReplaceableCollectionTypeInsert() {
+        let positions = [Position(x: -1, y: -2), Position(x: 1, y: 2)]
+        var positionCollection = PositionCollection()
+
+        positionCollection.insert(positions[1], atIndex: 0)
+        XCTAssertEqual(positionCollection[0], positions[1])
+        XCTAssertEqual(positionCollection.count, 1)
+
+        positionCollection.insert(positions[0], atIndex: 0)
+        XCTAssertEqual(positionCollection[0], positions[0])
+        XCTAssertEqual(positionCollection[1], positions[1])
+        XCTAssertEqual(positionCollection.count, 2)
+
+        positionCollection.insertContentsOf(positions, at: 1)
+        XCTAssertEqual(positionCollection[0], positions[0])
+        XCTAssertEqual(positionCollection[1], positions[0])
+        XCTAssertEqual(positionCollection[2], positions[1])
+        XCTAssertEqual(positionCollection[3], positions[1])
+        XCTAssertEqual(positionCollection.count, 4)
+    }
+
 //        positionCollection.replaceRange(1...2, with: [positions[1], positions[2]])
 //        XCTAssertEqual(positionCollection[0].x, positions[0].x)
 //        XCTAssertEqual(positionCollection[0].y, positions[0].y)
