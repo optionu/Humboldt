@@ -89,16 +89,20 @@ extension PositionCollection : RangeReplaceableCollectionType {
     public mutating func replaceRange<C : CollectionType where C.Generator.Element == Generator.Element>(subRange: Range<PositionCollection.Index>, with newElements: C) {
         precondition(subRange.startIndex >= 0)
         precondition(subRange.endIndex <= endIndex)
-        
+
         // Move elements down to keep existing elements
+        let endIndexMoveDown = endIndex - subRange.count
+        for index in subRange.startIndex..<endIndexMoveDown {
+            self[index] = self[index + subRange.count]
+        }
         
         // Adjust space to required elements
         let numberOfPoints = count + numericCast(newElements.count) - (subRange.endIndex - subRange.startIndex)
         OGR_G_SetPointCount(geometryStorage.geometry, Int32(numberOfPoints))
         
         // Move elements up to make space for inserted elements
-        let startIndex = subRange.startIndex + numericCast(newElements.count)
-        for index in (startIndex..<numberOfPoints).reverse() {
+        let startIndexMoveUp = subRange.startIndex + numericCast(newElements.count)
+        for index in (startIndexMoveUp..<numberOfPoints).reverse() {
             self[index] = self[index - numericCast(newElements.count)]
         }
         

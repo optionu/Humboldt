@@ -111,28 +111,37 @@ class PositionCollectionTests: XCTestCase {
         XCTAssertEqual(positionCollection.count, 4)
     }
 
+    func testRangeReplaceableCollectionTypeRemove() {
+        let positions = [Position(x: -1, y: -2), Position(x: 1, y: 2), Position(x: 3, y: 4), Position(x: -10, y: 3)]
+        var positionCollection = PositionCollection()
+        positionCollection.appendContentsOf(positions)
+
+        positionCollection.removeAtIndex(1)
+        XCTAssertEqual(positionCollection[0], positions[0])
+        XCTAssertEqual(positionCollection[1], positions[2])
+        XCTAssertEqual(positionCollection[2], positions[3])
+        XCTAssertEqual(positionCollection.count, 3)
+
+        positionCollection.removeRange(0...1)
+        XCTAssertEqual(positionCollection[0], positions[3])
+        XCTAssertEqual(positionCollection.count, 1)
+
+        positionCollection.removeAll(keepCapacity: true)
+        XCTAssertEqual(positionCollection.count, 0)
+
+        positionCollection.removeAll()
+        XCTAssertEqual(positionCollection.count, 0)
+    }
+
+//    func testRangeReplaceableCollectionTypeReplace() {
+//        let positions = [Position(x: -1, y: -2), Position(x: 1, y: 2)]
+//        var positionCollection = PositionCollection()
+//
 //        positionCollection.replaceRange(1...2, with: [positions[1], positions[2]])
 //        XCTAssertEqual(positionCollection[0].x, positions[0].x)
-//        XCTAssertEqual(positionCollection[0].y, positions[0].y)
 //        XCTAssertEqual(positionCollection[1].x, positions[1].x)
-//        XCTAssertEqual(positionCollection[1].y, positions[1].y)
 //        XCTAssertEqual(positionCollection[2].x, positions[2].x)
-//        XCTAssertEqual(positionCollection[2].y, positions[2].y)
 //        XCTAssertEqual(positionCollection.count, 3)
-//        
-//        positionCollection.removeAtIndex(1)
-//        XCTAssertEqual(positionCollection[0].x, positions[0].x)
-//        XCTAssertEqual(positionCollection[0].y, positions[0].y)
-//        XCTAssertEqual(positionCollection[1].x, positions[2].x)
-//        XCTAssertEqual(positionCollection[1].y, positions[2].y)
-//        XCTAssertEqual(positionCollection.count, 2)
-//
-////        positionCollection.removeRange(<#T##subRange: Range<Int>##Range<Int>#>)
-//
-//        positionCollection.removeAll(keepCapacity: true)
-//        XCTAssertEqual(positionCollection.count, 0)
-//
-//        positionCollection.removeAll()
-//        XCTAssertEqual(positionCollection.count, 0)
 //    }
+
 }
