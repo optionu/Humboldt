@@ -133,15 +133,22 @@ class PositionCollectionTests: XCTestCase {
         XCTAssertEqual(positionCollection.count, 0)
     }
 
-//    func testRangeReplaceableCollectionTypeReplace() {
-//        let positions = [Position(x: -1, y: -2), Position(x: 1, y: 2)]
-//        var positionCollection = PositionCollection()
-//
-//        positionCollection.replaceRange(1...2, with: [positions[1], positions[2]])
-//        XCTAssertEqual(positionCollection[0].x, positions[0].x)
-//        XCTAssertEqual(positionCollection[1].x, positions[1].x)
-//        XCTAssertEqual(positionCollection[2].x, positions[2].x)
-//        XCTAssertEqual(positionCollection.count, 3)
-//    }
+    func testRangeReplaceableCollectionTypeReplace() {
+        let positions = [Position(x: -1, y: -2), Position(x: 1, y: 2), Position(x: 3, y: 4), Position(x: -10, y: 3)]
+        var positionCollection = PositionCollection()
 
+        positionCollection.replaceRange(0..<0, with: [positions[0], positions[1]])
+        XCTAssertEqual(positionCollection[0], positions[0])
+        XCTAssertEqual(positionCollection[1], positions[1])
+        XCTAssertEqual(positionCollection.count, 2)
+
+        positionCollection.replaceRange(0..<2, with: [positions[1], positions[0]])
+        XCTAssertEqual(positionCollection[0], positions[1])
+        XCTAssertEqual(positionCollection[1], positions[0])
+        XCTAssertEqual(positionCollection.count, 2)
+
+        positionCollection.replaceRange(1..<2, with: [])
+        XCTAssertEqual(positionCollection[0], positions[1])
+        XCTAssertEqual(positionCollection.count, 1)
+    }
 }
