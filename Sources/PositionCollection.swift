@@ -112,3 +112,19 @@ extension PositionCollection : RangeReplaceableCollectionType {
         }
     }
 }
+
+extension PositionCollection : Equatable {}
+
+public func ==(lhs: PositionCollection, rhs: PositionCollection) -> Bool {
+    if lhs.count != rhs.count {
+        return false
+    }
+
+    for index in 0..<lhs.count {
+        if lhs[index] != rhs[index] {
+            return false
+        }
+    }
+
+    return true
+}

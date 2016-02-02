@@ -151,4 +151,21 @@ class PositionCollectionTests: XCTestCase {
         XCTAssertEqual(positionCollection[0], positions[1])
         XCTAssertEqual(positionCollection.count, 1)
     }
+
+    func testEqual() {
+        var positionCollection0 = PositionCollection()
+        positionCollection0.appendContentsOf([Position(), Position(x: 1, y: 2)])
+
+        let positionCollection1 = positionCollection0
+        XCTAssertEqual(positionCollection0, positionCollection0)
+        XCTAssertEqual(positionCollection0, positionCollection1)
+
+        var positionCollection2 = PositionCollection()
+        positionCollection2.appendContentsOf([Position()])
+        XCTAssertNotEqual(positionCollection0, positionCollection2)
+
+        var positionCollection3 = PositionCollection()
+        positionCollection3.appendContentsOf([Position(), Position(x: 1, y: 2.2)])
+        XCTAssertNotEqual(positionCollection0, positionCollection3)
+    }
 }
