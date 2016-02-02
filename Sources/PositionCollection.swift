@@ -70,7 +70,7 @@ extension PositionCollection : MutableCollectionType {
             precondition(index < endIndex)
             
             ensureUnique(geometryStorage: &geometryStorage)
-            
+
             if let altitude = position.altitude {
                 OGR_G_SetPoint(geometryStorage.geometry, Int32(index), position.x, position.y, altitude)
             } else {
@@ -89,6 +89,8 @@ extension PositionCollection : RangeReplaceableCollectionType {
     public mutating func replaceRange<C : CollectionType where C.Generator.Element == Generator.Element>(subRange: Range<PositionCollection.Index>, with newElements: C) {
         precondition(subRange.startIndex >= 0)
         precondition(subRange.endIndex <= endIndex)
+
+        ensureUnique(geometryStorage: &geometryStorage)
 
         // Move elements down to keep existing elements
         let endIndexMoveDown = endIndex - subRange.count

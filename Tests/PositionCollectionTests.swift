@@ -168,4 +168,26 @@ class PositionCollectionTests: XCTestCase {
         positionCollection3.appendContentsOf([Position(), Position(x: 1, y: 2.2)])
         XCTAssertNotEqual(positionCollection0, positionCollection3)
     }
+
+    func testCopyOnWriteSetter() {
+        var positionCollection0 = PositionCollection()
+        positionCollection0.append(Position())
+
+        var positionCollection1 = positionCollection0
+        XCTAssertEqual(positionCollection0, positionCollection1)
+
+        positionCollection1[0] = Position(x: 3, y: 4)
+        XCTAssertNotEqual(positionCollection0, positionCollection1)
+    }
+
+    func testCopyOnWriteReplaceRange() {
+        var positionCollection0 = PositionCollection()
+        positionCollection0.append(Position())
+
+        var positionCollection1 = positionCollection0
+        XCTAssertEqual(positionCollection0, positionCollection1)
+
+        positionCollection1.append(Position())
+        XCTAssertNotEqual(positionCollection0, positionCollection1)
+    }
 }
