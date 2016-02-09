@@ -22,7 +22,7 @@ extension PositionCollection : SequenceType {
 
     public func generate() -> Generator {
         var index = 0
-        return anyGenerator {
+        return AnyGenerator {
             if index < Int(OGR_G_GetPointCount(self.geometryStorage.geometry)) {
                 let is3D = OGR_G_GetCoordinateDimension(self.geometryStorage.geometry) > 2
                 let x = OGR_G_GetX(self.geometryStorage.geometry, Int32(index))
