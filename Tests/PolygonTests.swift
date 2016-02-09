@@ -34,7 +34,10 @@ class PolygonTests: XCTestCase {
     
     func testChangeExteriorRing() {
         var polygon = Humboldt.Polygon()
-        
+        polygon.exteriorRing = PositionCollection()
+        polygon.exteriorRing.removeAll()
+        polygon.exteriorRing.append(Position())
+
         OGR_G_SetPointCount(polygon.exteriorRing.geometryStorage.geometry, 3)
         polygon.exteriorRing[0] = Position(x: 0, y: 0)
         polygon.exteriorRing[1] = Position(x: 1, y: 0)
@@ -49,5 +52,29 @@ class PolygonTests: XCTestCase {
         polygon.exteriorRing[0] = Position(x: 0, y: 0)
         polygon.exteriorRing[1] = Position(x: 1, y: 0)
         XCTAssertEqual(polygon.exteriorRing.count, 3)
+    }
+
+    func testInteraction() {
+        if true {
+            var polygon = Humboldt.Polygon()
+            polygon.exteriorRing = PositionCollection()
+            polygon.exteriorRing.append(Position())
+        }
+
+        if true {
+            var polygon = Humboldt.Polygon()
+            polygon.exteriorRing.append(Position())
+        }
+
+        if true {
+            var positionCollection: PositionCollection?
+            if true {
+                var polygon = Humboldt.Polygon()
+                positionCollection = polygon.exteriorRing
+            }
+            positionCollection?.append(Position())
+        }
+
+        // copy on write
     }
 }

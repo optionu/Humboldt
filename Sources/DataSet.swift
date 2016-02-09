@@ -14,8 +14,9 @@ import CGDAL
 // ToDo: Use throws for GeometryStorage instead of init?
 // ToDo: possible to hide geometryStorage property?
 
+/// Geometry/-Storage
 // Fix 3D when creating geometries?
-// Make geometries immutable?
+// Property for owning sub geometries? + test
 
 /// LineString
 // Add tests

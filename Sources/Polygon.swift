@@ -11,12 +11,12 @@ import CGDAL
 
 public struct Polygon : Geometry {
     public let geometryStorage: GeometryStorage
-    public internal(set) var exteriorRing: PositionCollection {
+    public var exteriorRing: PositionCollection {
         didSet {
             OGR_G_CloseRings(exteriorRing.geometryStorage.geometry)
         }
     }
-    public internal(set) var interiorRings: [PositionCollection]? {
+    public var interiorRings: [PositionCollection]? {
         didSet {
             for interiorRing in interiorRings ?? [PositionCollection]() {
                 OGR_G_CloseRings(interiorRing.geometryStorage.geometry)
@@ -46,14 +46,14 @@ public struct Polygon : Geometry {
                 return geometryExteriorRing
             }
         }()
-        let geometryStorageExteriorRing = GeometryStorage(geometry: geometryExteriorRing, ownsGeometry: false)!
+        let geometryStorageExteriorRing = GeometryStorage(geometry: geometryExteriorRing)!
         self.exteriorRing = PositionCollection(geometryStorage: geometryStorageExteriorRing)
         
         if geometryCount > 1 {
             var interiorRings = [PositionCollection]()
             for i in 1..<geometryCount {
                 let geometryInteriorRing = OGR_G_GetGeometryRef(geometryStorage.geometry, i)
-                let geometryStorageInteriorRing = GeometryStorage(geometry: geometryInteriorRing, ownsGeometry: false)!
+                let geometryStorageInteriorRing = GeometryStorage(geometry: geometryInteriorRing)!
                 let positionCollection = PositionCollection(geometryStorage: geometryStorageInteriorRing)
                 interiorRings.append(positionCollection)
             }

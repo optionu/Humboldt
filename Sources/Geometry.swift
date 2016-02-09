@@ -16,15 +16,13 @@ public protocol Geometry {
 
 public final class GeometryStorage {
     let geometry: OGRGeometryH
-    let ownsGeometry: Bool
-    
-    /// Handle the given geometry and optionally take ownership
-    init?(geometry: OGRGeometryH, ownsGeometry: Bool = true) {
+
+    /// Handle the given geometry
+    init?(geometry: OGRGeometryH) {
         // Can't use guard in Swift <2.2 because classes must initialize stored
         // properties before returning nil
         self.geometry = geometry
-        self.ownsGeometry = ownsGeometry
-        
+
         if (geometry == nil) {
             return nil
         }
@@ -47,9 +45,26 @@ public final class GeometryStorage {
     }
     
     deinit {
-        if ownsGeometry {
-            OGR_G_DestroyGeometry(geometry)
+        if geometry != nil {
+            // Geometries attached to this geometry must be freed independently
+
+            if OGR_G_GetGeometryType(geometry) == wkbPolygon {
+                // OGR_G_RemoveGeometry is not supported for polygons yet
+                let geometryCount = OGR_G_GetGeometryCount(geometry)
+                if geometryCount > 0 {
+                    Humboldt_OGR_G_StealExteriorRing(geometry)
+                }
+                if geometryCount > 1 {
+                    for index in 0..<geometryCount - 1 {
+                        Humboldt_OGR_G_StealInteriorRing(geometry, index)
+                    }
+                }
+            } else {
+                OGR_G_RemoveGeometry(geometry, -1, 1);
+            }
         }
+
+        OGR_G_DestroyGeometry(geometry)
     }
 }
 

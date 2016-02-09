@@ -13,7 +13,7 @@ public struct LineString : Geometry {
     public var geometryStorage: GeometryStorage {
         return positions.geometryStorage
     }
-    public internal(set) var positions: PositionCollection
+    public var positions: PositionCollection
     
     public init() {
         let geometry = OGR_G_CreateGeometry(wkbLineString)

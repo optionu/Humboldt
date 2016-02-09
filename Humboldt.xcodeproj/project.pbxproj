@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		035A87A51C67EEDB00FDCC2C /* custom_gdal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 035A87A31C67EEDB00FDCC2C /* custom_gdal.cpp */; };
+		035A87A61C67EEDB00FDCC2C /* custom_gdal.h in Headers */ = {isa = PBXBuildFile; fileRef = 035A87A41C67EEDB00FDCC2C /* custom_gdal.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03A6E3631C3D77370072FD7C /* Humboldt.h in Headers */ = {isa = PBXBuildFile; fileRef = 03A6E3621C3D77370072FD7C /* Humboldt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		03A6E36A1C3D77370072FD7C /* Humboldt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03A6E35F1C3D77370072FD7C /* Humboldt.framework */; };
 		03A6E36F1C3D77370072FD7C /* GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6E36E1C3D77370072FD7C /* GeometryTests.swift */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		035A87A31C67EEDB00FDCC2C /* custom_gdal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = custom_gdal.cpp; sourceTree = "<group>"; };
+		035A87A41C67EEDB00FDCC2C /* custom_gdal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = custom_gdal.h; sourceTree = "<group>"; };
 		03A6E35F1C3D77370072FD7C /* Humboldt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Humboldt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		03A6E3621C3D77370072FD7C /* Humboldt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Humboldt.h; sourceTree = "<group>"; };
 		03A6E3641C3D77370072FD7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -112,8 +116,10 @@
 				62D5FB281C5418DE000A6489 /* LineString.swift */,
 				62D5FB2A1C5418E9000A6489 /* Polygon.swift */,
 				62D5FB261C54161B000A6489 /* MapKit.swift */,
-				03A6E3621C3D77370072FD7C /* Humboldt.h */,
 				03A6E3641C3D77370072FD7C /* Info.plist */,
+				03A6E3621C3D77370072FD7C /* Humboldt.h */,
+				035A87A41C67EEDB00FDCC2C /* custom_gdal.h */,
+				035A87A31C67EEDB00FDCC2C /* custom_gdal.cpp */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -142,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03A6E3631C3D77370072FD7C /* Humboldt.h in Headers */,
+				035A87A61C67EEDB00FDCC2C /* custom_gdal.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +249,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				035A87A51C67EEDB00FDCC2C /* custom_gdal.cpp in Sources */,
 				62D5FB2B1C5418E9000A6489 /* Polygon.swift in Sources */,
 				62D5FB231C53FE71000A6489 /* GeometryOperations.swift in Sources */,
 				62D5FB291C5418DE000A6489 /* LineString.swift in Sources */,
@@ -380,6 +388,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)",
+					/usr/local/include,
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
@@ -400,6 +412,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)",
+					/usr/local/include,
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
