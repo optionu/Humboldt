@@ -18,7 +18,7 @@ class PositionCollectionTests: XCTestCase {
         OGR_G_AddPoint_2D(geometry, positions[0].x, positions[0].y)
         OGR_G_AddPoint_2D(geometry, positions[1].x, positions[1].y)
         OGR_G_AddPoint_2D(geometry, positions[2].x, positions[2].y)
-        let geometryStorage = GeometryStorage(geometry: geometry)!
+        let geometryStorage = GeometryStorage(geometry: geometry, ownsChildGeometries: true)!
         
         let positionCollection = PositionCollection(geometryStorage: geometryStorage)
         
@@ -38,7 +38,7 @@ class PositionCollectionTests: XCTestCase {
         OGR_G_AddPoint_2D(geometry, positions[0].x, positions[0].y)
         OGR_G_AddPoint_2D(geometry, positions[1].x, positions[1].y)
         OGR_G_AddPoint_2D(geometry, positions[2].x, positions[2].y)
-        let geometryStorage = GeometryStorage(geometry: geometry)!
+        let geometryStorage = GeometryStorage(geometry: geometry, ownsChildGeometries: true)!
         
         let positionCollection = PositionCollection(geometryStorage: geometryStorage)
         
@@ -56,7 +56,7 @@ class PositionCollectionTests: XCTestCase {
         
         let geometry = OGR_G_CreateGeometry(wkbLineString)
         OGR_G_SetPointCount(geometry, 3)
-        let geometryStorage = GeometryStorage(geometry: geometry)!
+        let geometryStorage = GeometryStorage(geometry: geometry, ownsChildGeometries: true)!
         
         var positionCollection = PositionCollection(geometryStorage: geometryStorage)
         positionCollection[0] = positions[0]

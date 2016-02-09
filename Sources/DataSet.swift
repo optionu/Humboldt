@@ -16,8 +16,6 @@ import CGDAL
 
 /// Geometry/-Storage
 // Fix 3D when creating geometries?
-// Take OGRGeometryH for init in Polygon, LineString, Point to make sure that ownsChildGeometries is set correctly
-// Test feature creation
 
 /// LineString
 // Add tests
@@ -108,13 +106,8 @@ final public class DataSet {
                     OGR_F_Destroy(feature)
                     feature = OGR_L_GetNextFeature(layer)
                 }
-                
-                guard let geometryStorage = GeometryStorage(feature: feature) else {
-                    continue
-                }
-                
-                let geometryType = OGR_G_GetGeometryType(geometryStorage.geometry)
-                guard let geometry = geometryForGeometryType(geometryType, geometryStorage: geometryStorage) else {
+
+                guard let geometry = createGeometryFromFeature(feature) else {
                     continue
                 }
                 
@@ -127,10 +120,16 @@ final public class DataSet {
     }
 }
 
-func geometryForGeometryType(geometryType: OGRwkbGeometryType, geometryStorage: GeometryStorage) -> Geometry? {
+func createGeometryFromFeature(feature: OGRFeatureH) -> Geometry? {
+    let geometry = OGR_F_StealGeometry(feature)
+    guard geometry != nil else {
+        return nil
+    }
+
+    let geometryType = OGR_G_GetGeometryType(geometry)
     switch geometryType {
     case wkbPoint, wkbPoint25D:
-        return Point(geometryStorage: geometryStorage)
+        return Point(geometry: geometry)
     default:
         return nil
     }

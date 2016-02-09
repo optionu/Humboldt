@@ -26,35 +26,32 @@ public struct Polygon : Geometry {
     
     public init() {
         let geometry = OGR_G_CreateGeometry(wkbPolygon)
-        let geometryStorage = GeometryStorage(geometry: geometry, ownsChildGeometries: false)!
-
-        self.init(geometryStorage: geometryStorage)
+        self.init(geometry: geometry)
     }
     
-    init(geometryStorage: GeometryStorage) {
-        precondition(OGR_G_GetGeometryType(geometryStorage.geometry) == wkbPolygon)
-        precondition(geometryStorage.ownsChildGeometries == false)
-        
-        self.geometryStorage = geometryStorage
+    init(geometry: OGRGeometryH) {
+        precondition(OGR_G_GetGeometryType(geometry) == wkbPolygon)
+
+        self.geometryStorage = GeometryStorage(geometry: geometry, ownsChildGeometries: false)!
         let geometryCount = OGR_G_GetGeometryCount(geometryStorage.geometry)
         
         let geometryExteriorRing: OGRGeometryH = {
             if geometryCount > 0 {
-                return OGR_G_GetGeometryRef(geometryStorage.geometry, 0)
+                return OGR_G_GetGeometryRef(geometry, 0)
             } else {
                 let geometryExteriorRing = OGR_G_CreateGeometry(wkbLinearRing)
-                OGR_G_AddGeometryDirectly(geometryStorage.geometry, geometryExteriorRing)
+                OGR_G_AddGeometryDirectly(geometry, geometryExteriorRing)
                 return geometryExteriorRing
             }
         }()
-        let geometryStorageExteriorRing = GeometryStorage(geometry: geometryExteriorRing)!
+        let geometryStorageExteriorRing = GeometryStorage(geometry: geometryExteriorRing, ownsChildGeometries: true)!
         self.exteriorRing = PositionCollection(geometryStorage: geometryStorageExteriorRing)
         
         if geometryCount > 1 {
             var interiorRings = [PositionCollection]()
             for i in 1..<geometryCount {
                 let geometryInteriorRing = OGR_G_GetGeometryRef(geometryStorage.geometry, i)
-                let geometryStorageInteriorRing = GeometryStorage(geometry: geometryInteriorRing)!
+                let geometryStorageInteriorRing = GeometryStorage(geometry: geometryInteriorRing, ownsChildGeometries: true)!
                 let positionCollection = PositionCollection(geometryStorage: geometryStorageInteriorRing)
                 interiorRings.append(positionCollection)
             }

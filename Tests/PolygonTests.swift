@@ -18,8 +18,7 @@ class PolygonTests: XCTestCase {
         let geometryInteriorRing = OGR_G_CreateGeometry(wkbLinearRing)
         OGR_G_AddGeometryDirectly(geometry, geometryInteriorRing)
 
-        let geometryStorage = GeometryStorage(geometry: geometry, ownsChildGeometries: false)!
-        let polygon = Humboldt.Polygon(geometryStorage: geometryStorage)
+        let polygon = Humboldt.Polygon(geometry: geometry)
         
         XCTAssertEqual(polygon.exteriorRing.count, 0)
         XCTAssertEqual(polygon.interiorRings?.count, 1)

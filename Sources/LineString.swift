@@ -17,13 +17,13 @@ public struct LineString : Geometry {
     
     public init() {
         let geometry = OGR_G_CreateGeometry(wkbLineString)
-        let geometryStorage = GeometryStorage(geometry: geometry)!
-        self.init(geometryStorage: geometryStorage)
+        self.init(geometry: geometry)
     }
     
-    init(geometryStorage: GeometryStorage) {
-        precondition(OGR_G_GetGeometryType(geometryStorage.geometry) == wkbLineString)
-        
+    init(geometry: OGRGeometryH) {
+        precondition(OGR_G_GetGeometryType(geometry) == wkbLineString)
+
+        let geometryStorage = GeometryStorage(geometry: geometry, ownsChildGeometries: true)!
         self.positions = PositionCollection(geometryStorage: geometryStorage)
     }
 }

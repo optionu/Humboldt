@@ -20,23 +20,13 @@ public final class GeometryStorage {
     let ownsChildGeometries: Bool
 
     /// Handle the given geometry.
-    init?(geometry: OGRGeometryH, ownsChildGeometries: Bool = true) {
+    init?(geometry: OGRGeometryH, ownsChildGeometries: Bool) {
         guard geometry != nil else {
             return nil
         }
 
         self.geometry = geometry
         self.ownsChildGeometries = ownsChildGeometries
-    }
-    
-    /// Take ownership of the geometry inside a feature.
-    convenience init?(feature: OGRFeatureH) {
-        guard feature != nil else {
-            return nil
-        }
-        
-        let geometry = OGR_F_StealGeometry(feature)
-        self.init(geometry: geometry, ownsChildGeometries: false)
     }
     
     /// Copies the contents of this geometry into a new object.

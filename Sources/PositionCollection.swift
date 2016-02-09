@@ -83,7 +83,7 @@ extension PositionCollection : MutableCollectionType {
 extension PositionCollection : RangeReplaceableCollectionType {
     public init() {
         let geometry = OGR_G_CreateGeometry(wkbLineString)
-        self.geometryStorage = GeometryStorage(geometry: geometry)!
+        self.geometryStorage = GeometryStorage(geometry: geometry, ownsChildGeometries: true)!
     }
     
     public mutating func replaceRange<C : CollectionType where C.Generator.Element == Generator.Element>(subRange: Range<PositionCollection.Index>, with newElements: C) {

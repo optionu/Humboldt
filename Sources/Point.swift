@@ -32,17 +32,16 @@ public struct Point : Geometry {
     
     public init(position: Position? = nil) {
         let geometry = OGR_G_CreateGeometry(wkbPoint)
-        let geometryStorage = GeometryStorage(geometry: geometry)!
-        self.init(geometryStorage: geometryStorage)
+        self.init(geometry: geometry)
         
         if let position = position {
             self.position = position
         }
     }
     
-    init(geometryStorage: GeometryStorage) {
-        precondition(OGR_G_GetGeometryType(geometryStorage.geometry) == wkbPoint)
+    init(geometry: OGRGeometryH) {
+        precondition(OGR_G_GetGeometryType(geometry) == wkbPoint)
 
-        self.geometryStorage = geometryStorage
+        self.geometryStorage = GeometryStorage(geometry: geometry, ownsChildGeometries: true)!
     }
 }

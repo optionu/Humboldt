@@ -13,12 +13,12 @@ import CGDAL
 class GeometryTests: XCTestCase {
     func testNonNil() {
         let geometry = OGR_G_CreateGeometry(wkbPoint)
-        let geometryStorage = GeometryStorage(geometry: geometry)
+        let geometryStorage = GeometryStorage(geometry: geometry, ownsChildGeometries: true)
         XCTAssertNotNil(geometryStorage)
     }
 
     func testNil() {
-        let geometryStorage = GeometryStorage(geometry: nil)
+        let geometryStorage = GeometryStorage(geometry: nil, ownsChildGeometries: true)
         XCTAssertNil(geometryStorage)
     }
     
@@ -40,11 +40,6 @@ class GeometryTests: XCTestCase {
         XCTAssertNotNil(geometryStorageCopy)
         XCTAssertFalse(geometryStorage === geometryStorageCopy)
         XCTAssertEqual(geometryStorage?.ownsChildGeometries, geometryStorageCopy?.ownsChildGeometries)
-    }
-    
-    func testFeatureNil() {
-        let geometryStorage = GeometryStorage(feature: nil)
-        XCTAssertNil(geometryStorage)
     }
     
     func testDoesNotOwnChildGeometries() {
