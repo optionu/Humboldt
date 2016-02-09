@@ -26,13 +26,14 @@ public struct Polygon : Geometry {
     
     public init() {
         let geometry = OGR_G_CreateGeometry(wkbPolygon)
-        let geometryStorage = GeometryStorage(geometry: geometry)!
+        let geometryStorage = GeometryStorage(geometry: geometry, ownsChildGeometries: false)!
 
         self.init(geometryStorage: geometryStorage)
     }
     
     init(geometryStorage: GeometryStorage) {
         precondition(OGR_G_GetGeometryType(geometryStorage.geometry) == wkbPolygon)
+        precondition(geometryStorage.ownsChildGeometries == false)
         
         self.geometryStorage = geometryStorage
         let geometryCount = OGR_G_GetGeometryCount(geometryStorage.geometry)

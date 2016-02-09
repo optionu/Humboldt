@@ -16,7 +16,8 @@ import CGDAL
 
 /// Geometry/-Storage
 // Fix 3D when creating geometries?
-// Property for owning sub geometries? + test
+// Take OGRGeometryH for init in Polygon, LineString, Point to make sure that ownsChildGeometries is set correctly
+// Test feature creation
 
 /// LineString
 // Add tests

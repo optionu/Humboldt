@@ -16,14 +16,16 @@ public protocol Geometry {
 
 public final class GeometryStorage {
     let geometry: OGRGeometryH
+    let ownsChildGeometries: Bool
 
-    /// Handle the given geometry
-    init?(geometry: OGRGeometryH) {
+    /// Handle the given geometry.
+    init?(geometry: OGRGeometryH, ownsChildGeometries: Bool = true) {
         guard geometry != nil else {
             return nil
         }
 
         self.geometry = geometry
+        self.ownsChildGeometries = ownsChildGeometries
     }
     
     /// Take ownership of the geometry inside a feature.
@@ -33,7 +35,7 @@ public final class GeometryStorage {
         }
         
         let geometry = OGR_F_StealGeometry(feature)
-        self.init(geometry: geometry)
+        self.init(geometry: geometry, ownsChildGeometries: false)
     }
     
     /// Copies the contents of this geometry into a new object.
@@ -43,9 +45,7 @@ public final class GeometryStorage {
     }
     
     deinit {
-        if geometry != nil {
-            // Geometries attached to this geometry must be freed independently
-
+        if ownsChildGeometries == false && geometry != nil {
             if OGR_G_GetGeometryType(geometry) == wkbPolygon {
                 // OGR_G_RemoveGeometry is not supported for polygons yet
                 let geometryCount = OGR_G_GetGeometryCount(geometry)
