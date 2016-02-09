@@ -68,13 +68,7 @@ public final class GeometryStorage {
 
 /// Makes sure that the given geometry storage is not referenced by more than one object.
 func ensureUnique(inout geometryStorage geometryStorage: GeometryStorage) {
-    guard !isUniquelyReferencedNonObjC(&geometryStorage) else {
-        return
+    if !isUniquelyReferencedNonObjC(&geometryStorage) {
+        geometryStorage = geometryStorage.copy()!
     }
-    
-    guard let clonedGeometryStorage = geometryStorage.copy() else {
-        return
-    }
-    
-    geometryStorage = clonedGeometryStorage
 }
