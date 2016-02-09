@@ -19,13 +19,11 @@ public final class GeometryStorage {
 
     /// Handle the given geometry
     init?(geometry: OGRGeometryH) {
-        // Can't use guard in Swift <2.2 because classes must initialize stored
-        // properties before returning nil
-        self.geometry = geometry
-
-        if (geometry == nil) {
+        guard geometry != nil else {
             return nil
         }
+
+        self.geometry = geometry
     }
     
     /// Take ownership of the geometry inside a feature.
