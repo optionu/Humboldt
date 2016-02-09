@@ -24,9 +24,22 @@ class GeometryTests: XCTestCase {
     
     func testClone() {
         let geometry = OGR_G_CreateGeometry(wkbPoint)
-        let geometryStorage = GeometryStorage(geometry: geometry)
+        let geometryStorage = GeometryStorage(geometry: geometry, ownsChildGeometries: true)
         let geometryStorageCopy = geometryStorage?.copy()
+
+        XCTAssertNotNil(geometryStorageCopy)
         XCTAssertFalse(geometryStorage === geometryStorageCopy)
+        XCTAssertEqual(geometryStorage?.ownsChildGeometries, geometryStorageCopy?.ownsChildGeometries)
+    }
+
+    func testCloneOwnsChildGeometries() {
+        let geometry = OGR_G_CreateGeometry(wkbPoint)
+        let geometryStorage = GeometryStorage(geometry: geometry, ownsChildGeometries: false)
+        let geometryStorageCopy = geometryStorage?.copy()
+
+        XCTAssertNotNil(geometryStorageCopy)
+        XCTAssertFalse(geometryStorage === geometryStorageCopy)
+        XCTAssertEqual(geometryStorage?.ownsChildGeometries, geometryStorageCopy?.ownsChildGeometries)
     }
     
     func testFeatureNil() {

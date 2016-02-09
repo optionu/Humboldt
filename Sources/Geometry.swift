@@ -14,6 +14,7 @@ public protocol Geometry {
     var geometryStorage: GeometryStorage { get }
 }
 
+/// Handles storage for a geometry type.
 public final class GeometryStorage {
     let geometry: OGRGeometryH
     let ownsChildGeometries: Bool
@@ -41,7 +42,7 @@ public final class GeometryStorage {
     /// Copies the contents of this geometry into a new object.
     func copy() -> GeometryStorage? {
         let geometry = OGR_G_Clone(self.geometry)
-        return GeometryStorage(geometry: geometry)
+        return GeometryStorage(geometry: geometry, ownsChildGeometries: ownsChildGeometries)
     }
     
     deinit {
